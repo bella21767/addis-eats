@@ -6,6 +6,7 @@ import Layout from "./component/Layout";
 import Home from "./component/Home";
 import Menu from "./component/Menu";
 import DishDetail from "./component/DishDetail";
+import Cart from "./component/Cart";
 import Login from "./component/Login";
 import RequireAuth from "./component/RequireAuth";
 import NotFound from "./component/NotFound";
@@ -55,9 +56,7 @@ export default function App() {
                       </div>
                     }
                   >
-                    <Suspense fallback={<Skeleton />}>
-                      <Checkout />
-                    </Suspense>
+                    <Cart />
                   </ErrorBoundary>
                 }
               />

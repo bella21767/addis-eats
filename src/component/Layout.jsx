@@ -1,83 +1,73 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import CartBadge from "./CartBadge";
+import Logo from "./Logo";
+import { ToastProvider } from "../context/ToastContext";
 import { useTheme } from "../hooks/useTheme";
 
 export default function Layout() {
   const { theme, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
 
   return (
-    <div
-      className="layout"
-      style={{
-        backgroundColor: theme === "light" ? "#ffffff" : "#1a1a1a",
-        color: theme === "light" ? "#000000" : "#ffffff",
-        minHeight: "100vh",
-        padding: "20px",
-      }}
-    >
-      <header>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h1>Addis Eats</h1>
-          <button onClick={toggleTheme}>
-            Switch to {theme === "light" ? "Dark" : "Light"} Mode
-          </button>
-        </div>
-        <nav
-          style={{
-            display: "flex",
-            gap: "15px",
-            alignItems: "center",
-            marginTop: "10px",
-          }}
-        >
-          <NavLink
-            to="/"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              color: "inherit",
-            })}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/menu"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              color: "inherit",
-            })}
-          >
-            Menu
-          </NavLink>
-          <NavLink
-            to="/cart"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              color: "inherit",
-            })}
-          >
-            <CartBadge />
-          </NavLink>
-          <NavLink
-            to="/checkout"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              color: "inherit",
-            })}
-          >
-            Checkout
-          </NavLink>
-        </nav>
-      </header>
-      <hr />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <ToastProvider>
+      <div className="layout">
+        <header className="site-header">
+          <div className="header-inner">
+            <Link to="/" className="logo">
+              <Logo size={42} />
+              <span className="logo-text">
+                <b>Addis <em>Eats</em></b>
+                <small>Ethiopian Kitchen</small>
+              </span>
+            </Link>
+
+            <nav className={open ? "nav open" : "nav"} onClick={() => setOpen(false)}>
+              <NavLink to="/" end>Home</NavLink>
+              <NavLink to="/menu">Menu</NavLink>
+              <NavLink to="/cart" className="cart-link">
+                <CartBadge />
+              </NavLink>
+              <NavLink to="/checkout">Checkout</NavLink>
+            </nav>
+
+            <div className="header-actions">
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              >
+                {theme === "light" ? "🌙" : "☀️"}
+              </button>
+              <button
+                className="menu-toggle"
+                onClick={() => setOpen((o) => !o)}
+                aria-label="Toggle menu"
+                aria-expanded={open}
+              >
+                {open ? "✕" : "☰"}
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main className="container">
+          <Outlet />
+        </main>
+
+        <footer className="site-footer">
+          <div className="footer-inner">
+            <Link to="/" className="logo small">
+              <Logo size={30} />
+              <span className="logo-text">
+                <b>Addis <em>Eats</em></b>
+              </span>
+            </Link>
+            <p>© {new Date().getFullYear()} Addis Eats · Traditional Ethiopian food, delivered in Addis Ababa.</p>
+          </div>
+        </footer>
+      </div>
+    </ToastProvider>
   );
 }

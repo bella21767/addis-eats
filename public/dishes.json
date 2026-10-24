@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Doro Wat",
+    "category": "Main",
+    "spicy": true,
+    "price": 350,
+    "image": "/images/doro-wat.jpg",
+    "description": "Spicy chicken stew with boiled egg, served with injera."
+  },
+  {
+    "id": 2,
+    "name": "Shiro",
+    "category": "Vegan",
+    "spicy": false,
+    "price": 180,
+    "image": "/images/shiro.jpg",
+    "description": "Creamy chickpea stew served with injera."
+  },
+  {
+    "id": 3,
+    "name": "Tibs",
+    "category": "Grill",
+    "spicy": false,
+    "price": 400,
+    "image": "/images/tibs.jpg",
+    "description": "Sauteed beef cubes with onions and peppers."
+  },
+  {
+    "id": 4,
+    "name": "Kitfo",
+    "category": "Main",
+    "spicy": true,
+    "price": 450,
+    "image": "/images/kitfo.jpg",
+    "description": "Minced beef seasoned with spiced butter and mitmita."
+  },
+  {
+    "id": 5,
+    "name": "Misir Wat",
+    "category": "Vegan",
+    "spicy": true,
+    "price": 160,
+    "image": "/images/misir-wat.jpg",
+    "description": "Red lentil stew cooked with berbere spice."
+  },
+  {
+    "id": 6,
+    "name": "Gored Gored",
+    "category": "Grill",
+    "spicy": false,
+    "price": 420,
+    "image": "/images/gored-gored.jpg",
+    "description": "Cubed beef served with awaze sauce."
+  }
+]
